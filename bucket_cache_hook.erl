@@ -2,6 +2,7 @@
 -author({ "David J Goehrig", "dave@dloh.org" }).
 -copyright("© 2012 David J. Goehrig").
 -export([ create_cache/1 ]).
+-vsn("0.0.1").
 
 % the bucket_cache_hook is a Riak post commit hook that will take json objects from a bucket and install into
 % a /riak/cache/[bucket] file as an array of elements.  This is useful for when you want to have a prebaked
