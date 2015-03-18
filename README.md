@@ -14,22 +14,22 @@ The easiest way to install the bucket_cache_hook is to copy it into the root dir
 	(riak1@127.0.0.1)2> q().
 
 	# then add it as a postcommit hook to your chosen bucket
-	$ curl -XPUT -H "Content-Type: application/json" http://localhost:8091/riak/test -d '{"props":{"postcommit":[{"mod": "bucket_cache_hook", "fun": "create_cache"}]}}'
+	$ curl -XPUT -H "Content-Type: application/json" http://127.0.0.1:8098/riak/test -d '{"props":{"postcommit":[{"mod": "bucket_cache_hook", "fun": "create_cache"}]}}'
 
 	# now load a test payload
-	$ curl -XPUT -H "Content-Type: applicaiton/json" http://localhost:8091/riak/test/test.json -d '{ "message": "this is a test" }'
+	$ curl -XPUT -H "Content-Type: applicaiton/json" http://127.0.0.1:8098/riak/test/test.json -d '{ "message": "this is a test" }'
 	
 	# then check that it loaded
-	$ curl http://localhost:8091/riak/test/test.json
+	$ curl http://127.0.0.1:8098/riak/test/test.json
 	{ "message": "this is a test" }
 
 	# next  check the cache, you'll find [ {filename : payload } ]
-	$ curl http://localhost:8091/riak/cache/test
+	$ curl http://127.0.0.1:80918/riak/cache/test
 	[{"test.json":{"message":"this is a test"}}]
 
 	# then clean up after yourself
-	$ curl -XDELETE http://localhost:8091/riak/test/test.json
-	$ curl http://localhost:8091/riak/cache/test
+	$ curl -XDELETE http://127.0.0.1:8098/riak/test/test.json
+	$ curl http://127.0.0.1:8098/riak/cache/test
 	[]
 
 David J. Goehrig
